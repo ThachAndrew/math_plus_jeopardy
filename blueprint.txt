@@ -1,0 +1,12 @@
+Uses "Processing"
+
+Menu: 
+  -Play
+  -Config game 
+  -Exit
+
+Play:
+  -GUI that emulates jeopardy screen.
+  
+Config game:
+  -set time limit
