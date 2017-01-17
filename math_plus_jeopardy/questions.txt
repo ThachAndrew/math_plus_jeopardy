@@ -1,0 +1,7 @@
+﻿##Categories (Must input 4 categories)
+Bla
+Test
+Foo
+Bar
+
+
