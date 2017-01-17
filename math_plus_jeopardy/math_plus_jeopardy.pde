@@ -5,14 +5,15 @@
  * Status: not working
  */
 void setup() {
-  size(400, 400);
-  background(255, 255, 0);
+  fullScreen();
+  background(0, 0, 200);
 }
 
+boolean startUp = true;
 void draw() {
-  fill(0, 0, 0);
-  stroke(255,0,255);
-  strokeWeight(10);
-  rectMode(CENTER);
-  rect(width/2, height/2, 100, 100);
+  if (startUp){
+    textSize(100); fill(255,195,0); textAlign(CENTER);
+    text("Math Plus Jeopardy!", width/2, height/2);
+  }
+  
 }
