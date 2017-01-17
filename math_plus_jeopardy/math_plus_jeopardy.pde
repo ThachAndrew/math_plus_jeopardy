@@ -6,6 +6,7 @@
  */
 boolean startUp = true;
 Category[] column = new Category[4]; 
+int COLUMNSIZE = 4, ROWSIZE = 6; 
 color jeopardyBlue = color(0, 0, 120), jeopardyYellow = color(255, 185, 64);
 void setup() {
   fullScreen();
@@ -17,6 +18,7 @@ void draw() {
   //intro screen
   if (startUp) {
     drawMenu();
+    //chooseOption();
   } else {
     drawBoard(); 
     //chooseQuestion();
@@ -48,7 +50,7 @@ void drawMenu() {
 void drawBoard() {
   background(jeopardyBlue);
 
-  //fill top row with categories
+  //fill in board with category topic and its questions
   column[0].drawCategory(0, 0);
   column[1].drawCategory(width*.25, 0);
   column[2].drawCategory(width*.5, 0);
