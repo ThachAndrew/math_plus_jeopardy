@@ -1,7 +1,6 @@
-﻿##Categories (Must input 4 categories)
-Bla
-Test
-Foo
-Bar
-
+##Categories (Must input 4 categories)
+Signed Number Operations
+Fractions
+Mixed Numbers
+Teachers and TAs
 
