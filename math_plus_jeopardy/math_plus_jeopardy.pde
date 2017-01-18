@@ -10,7 +10,6 @@ int COLUMNSIZE = 4, ROWSIZE = 6;
 color jeopardyBlue = color(0, 0, 120), jeopardyYellow = color(255, 185, 64);
 void setup() {
   fullScreen();
-  background(jeopardyBlue);
   loadQuestions();
 }
 
@@ -40,12 +39,22 @@ void loadQuestions() {
     column[i] = new Category(line[i+1]);
 }
 void drawMenu() {
+  background(jeopardyBlue);
   textSize(100); 
   fill(jeopardyYellow); 
-  textAlign(CENTER);
-  text("Math Plus Jeopardy!", width/2, height/2);
-  text("Press any key to play", width/2, height/1.5);
-  if (keyPressed || mousePressed) startUp = false;
+  textAlign(CENTER, CENTER);
+  text("Math Plus Jeopardy!", width/2, height/5);
+  //text("Press any key to play", width/2, height/3.5);
+  
+  //interactive menu buttons
+  if(mouseY < height/3 + 50 && mouseY > height/3 - 50){
+    fill(0,0,255,100);
+    rect(0, height/3 - 50, width, 100);
+    if (mousePressed) startUp = false;
+  }
+  fill(200);
+  text("Play", width/2, height/3);
+  
 }
 void drawBoard() {
   background(jeopardyBlue);
