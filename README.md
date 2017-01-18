@@ -1,5 +1,5 @@
 Jeopardy. User configs text files to modify game questions.
 
-Status: not working
+Hit ESCAPE anytime to go to menu.
 
-//Test: logged with desktop
+Status: not working 

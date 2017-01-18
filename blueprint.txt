@@ -2,11 +2,11 @@ Uses Processing (processing.org)
 
 Menu: 
   -Play
-  -Config game 
+  -Settings
   -Exit
 
 Play:
   -GUI that emulates jeopardy screen.
   
-Config game:
+Settings:
   -set time limit
