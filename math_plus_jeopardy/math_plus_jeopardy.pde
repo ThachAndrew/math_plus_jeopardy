@@ -5,24 +5,29 @@
  * Status: not working
  * @author Thach, Andrew
  */
-boolean startUp = true;
+PImage logo;
+final int STARTSCREEN = 1, PLAY = 2, SETTINGS = 3;
+int stage = STARTSCREEN;
 Category[] column = new Category[4]; 
 int COLUMNSIZE = 4, ROWSIZE = 6; 
 color jeopardyBlue = color(0, 0, 120), jeopardyYellow = color(255, 185, 64);
 void setup() {
+  logo = loadImage("LOGO.png");
   fullScreen();
   loadQuestions();
 }
 
 void draw() {
   //intro screen
-  if (startUp) {
-    drawMenu();
-    //chooseOption();
-  } else {
+  if (stage == STARTSCREEN) 
+    Menu();
+   else 
+  if (stage == PLAY)
     drawBoard(); 
-    //chooseQuestion();
-  }
+   else
+  if (stage == SETTINGS)
+    Settings();
+  
 }
 //known issue: newlines in notepad vs vim
 void loadQuestions() {
@@ -41,29 +46,37 @@ void loadQuestions() {
     //FIXME: display error to sketch, then exit
   }
 }
-void drawMenu() {
-  
+void Menu() {
+  //Title Screen
+  image(logo, 0, 0);
   background(jeopardyBlue);
-  textSize(100); 
+  textSize(100);
+  strokeWeight(0);
   fill(jeopardyYellow); 
   textAlign(CENTER, CENTER);
-  text("Math Plus Jeopardy!", width/2, height/5);
+  text("JEOPARDY", width/2, height/5);
+  image(logo, 50, 50);
 
-  ////////////////////////////
-  //Interactive Menu Buttons//
-  ////////////////////////////
-  
+  chooseOption();
+
+  //Options
+  fill(200);
+  text("Play", width/2, height/3);
+  text("Settings", width/2, height/2);
+  text("Exit", width/2, height*.66);
+}
+int chooseOption(){
   //define hit-box for "play"
   if (mouseY < height/3 + 50 && mouseY > height/3 - 50) {
     fill(0, 0, 255, 100);
     rect(0, height/3 - 50, width, 100);
-    if (mousePressed) startUp = false;
+    if (mousePressed) stage = PLAY;
   }
   //define hit-box for "settings"
   if (mouseY < height/2 + 50 && mouseY > height/2 - 50) {
     fill(0, 0, 255, 100);
     rect(0, height/2 - 50, width, 100);
-    //if (mousePressed) ;
+    if (mousePressed) stage = SETTINGS;
   }
   //define hit-box for "exit"
   if (mouseY < height*.66 + 50 && mouseY > height*.66 - 50) {
@@ -71,10 +84,7 @@ void drawMenu() {
     rect(0, height*.66 - 50, width, 100);
     if (mousePressed) exit();
   }
-  fill(200);
-  text("Play", width/2, height/3);
-  text("Settings", width/2, height/2);
-  text("Exit", width/2, height*.66);
+  return stage;
 }
 void drawBoard() {
   background(jeopardyBlue);
@@ -84,17 +94,25 @@ void drawBoard() {
   column[1].drawCategory(width*.25, 0);
   column[2].drawCategory(width*.5, 0);
   column[3].drawCategory(width*.75, 0);
-  
-  //Shortcut to go back to main menu
-  
+}
+void Settings(){
+  background(jeopardyBlue);
+  image(logo, 50, 50);
+  textSize(100);
+  text("Time Limit", width/2, height/8);
+  textSize(30);
+  text("100 points", width/4, height*.3);
+  text("200 points", width/4, height*.4);
+  text("300 points", width/4, height*.5);
+  text("400 points", width/4, height*.6);
+  text("500 points", width/4, height*.7);
 }
 void keyPressed() {
   if (keyCode == 27) {
-    // leave game
     // transition to menu
     key = 0;
     println ("escape hit");
-    startUp = true; 
+    stage = STARTSCREEN; 
   }
   else
     println (key);

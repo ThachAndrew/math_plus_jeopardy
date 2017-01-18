@@ -1,5 +1,5 @@
 /*
- * Stores category and its questions
+ * Data structure: stores topic and its questions
  */
 class Category {
   String topic;
