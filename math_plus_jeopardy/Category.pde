@@ -1,9 +1,12 @@
 /*
  * Data structure: stores topic and its questions
  */
+ 
+Category[] column = new Category[4]; 
+int COLUMNSIZE = 4, ROWSIZE = 6; 
 class Category {
   String topic;
-  String[] questions = new String[5];
+  String[] questions = new String[ROWSIZE-1]; //top row doesn't count
 
   Category() {
     topic = "";
