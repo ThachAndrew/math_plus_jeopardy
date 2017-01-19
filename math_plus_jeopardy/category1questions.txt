@@ -1,5 +1,5 @@
-1+1=
-2/2=
-Test question
+11 + (-12) * -1 =
+32 / 2 x 2
+-4^2
 Daily Double
-Simplify 5^2
+Simplify 25/5^2

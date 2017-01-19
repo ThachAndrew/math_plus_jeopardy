@@ -28,7 +28,8 @@ int chooseOption(){
   if (mouseY < height/3 + 50 && mouseY > height/3 - 50) {
     fill(0, 0, 255, 100);
     rect(0, height/3 - 50, width, 100);
-    if (mousePressed) stage = PLAY;
+    if (mousePressed) {stage = PLAY; delay(100);}
+    //delay(30);
   }
   //define hit-box for "settings"
   if (mouseY < height/2 + 50 && mouseY > height/2 - 50) {
@@ -52,8 +53,16 @@ void drawBoard() {
   for(int i = 0; i < COLUMNSIZE; i++)
     for(int j = 0; j < ROWSIZE; j++)
       board[i][j].drawSquare();
-  
-  
+}
+void chooseQuestion(){
+  //hit box detection to display question
+  if (mousePressed){
+    int col =  floor((float)mouseX/width*COLUMNSIZE);
+    int row =  floor((float)mouseY/height*ROWSIZE);
+    board[col][row].displayText();
+    board[col][row].answered = true;
+    //println("Chose box pos: " + col + ", " + row);
+  }
 }
 void Settings(){
   background(jeopardyBlue);
