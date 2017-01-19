@@ -26,6 +26,13 @@ void draw() {
   else
     if (stage == SETTINGS)
       Settings();
+  
+   
+   //print object data
+   for(int i = 0; i < COLUMNSIZE; i++)
+      for(int j = 0; j < ROWSIZE; j++)  //FIXME: combine all for loops
+        println("pos: "+ i + ", " + j + "--" + board[i][j].textBox);
+  
 }
 
 void keyPressed() {
@@ -45,15 +52,21 @@ void loadQuestions() {
   String[] line;
   //board = new Square[COLUMNSIZE]; 
   try {
-    line = loadStrings("questions.txt");
+    line = loadStrings("categories.txt");
     //set text file categories
     for (int i = 0; i < COLUMNSIZE; i++) 
       board[i][0] = new Square(width/COLUMNSIZE*i, 0, line[i+1]);
     
     //set questions and point val.
+     String[] questions = loadStrings("category1questions.txt");
     for(int i = 0; i < COLUMNSIZE; i++)
       for(int j = 1; j < ROWSIZE; j++)  //FIXME: combine all for loops
-        board[i][j] = new Square(width/COLUMNSIZE*i, height/ROWSIZE*j, j*100, "foo");
+        board[i][j] = new Square(width/COLUMNSIZE*i, height/ROWSIZE*j, j*100, questions[j-1]);
+   
+  /* 
+    for(int i = 1; i <= ROWSIZE; i++)
+      board[0][i] = questions[i-1];
+    */
   } 
   catch (Exception e) {
     line = null;
