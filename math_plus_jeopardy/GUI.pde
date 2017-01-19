@@ -1,6 +1,7 @@
 //Interactive menu screen
 
 PImage logo;
+final int COLUMNSIZE = 4, ROWSIZE = 6; 
 color jeopardyBlue = color(0, 0, 120), jeopardyYellow = color(255, 185, 64);
 
 void Menu() {
@@ -43,14 +44,16 @@ int chooseOption(){
   }
   return stage;
 }
+
 void drawBoard() {
   background(jeopardyBlue);
 
-  //fill in board with category topic and its questions
-  column[0].drawCategory(0, 0);
-  column[1].drawCategory(width*.25, 0);
-  column[2].drawCategory(width*.5, 0);
-  column[3].drawCategory(width*.75, 0);
+ //fill in board with squares
+  for(int i = 0; i < COLUMNSIZE; i++)
+    for(int j = 0; j < ROWSIZE; j++)
+      board[i][j].drawSquare();
+  
+  
 }
 void Settings(){
   background(jeopardyBlue);
@@ -63,4 +66,5 @@ void Settings(){
   text("300 points", width/4, height*.5);
   text("400 points", width/4, height*.6);
   text("500 points", width/4, height*.7);
+  text("To edit category and questions, edit the textfiles: ", width/4, height*.9);
 }

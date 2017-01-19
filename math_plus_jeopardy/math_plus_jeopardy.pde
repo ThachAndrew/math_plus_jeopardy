@@ -20,12 +20,12 @@ void draw() {
   //Main Menu GUI
   if (stage == STARTSCREEN) 
     Menu();
-   else 
+  else 
   if (stage == PLAY)
     drawBoard(); 
-   else
-  if (stage == SETTINGS)
-    Settings();
+  else
+    if (stage == SETTINGS)
+      Settings();
 }
 
 void keyPressed() {
@@ -33,25 +33,35 @@ void keyPressed() {
     // transition to menu
     key = 0;
     println ("escape hit");
-    stage = STARTSCREEN; 
-  }
-  else
+    stage = STARTSCREEN;
+  } else
     println (key);
 }
-//FIXME: newlines in notepad vs vim
+//Creates "square objects", storing category and its questions(including point vals)
+//FIXME: newlines in notepad vs vim, magic number dimensions
+Square[][] board = new Square[4][6]; 
 void loadQuestions() {
+  //board = new Square[COLUMNSIZE];
   String[] line;
+  //board = new Square[COLUMNSIZE]; 
   try {
     line = loadStrings("questions.txt");
-    for (int i = 0; i < 4; i++) //set up text file categories.
-      column[i] = new Category(line[i+1]);
+    //set text file categories
+    for (int i = 0; i < COLUMNSIZE; i++) 
+      board[i][0] = new Square(width/COLUMNSIZE*i, 0, line[i+1]);
+    
+    //set questions and point val.
+    for(int i = 0; i < COLUMNSIZE; i++)
+      for(int j = 1; j < ROWSIZE; j++)  //FIXME: combine all for loops
+        board[i][j] = new Square(width/COLUMNSIZE*i, height/ROWSIZE*j, j*100, "foo");
   } 
   catch (Exception e) {
     line = null;
     println(e);
-    fill(255,0,0);
+    fill(255, 0, 0);
     //text("Error loading questions!", width/2, height*.75);
-    exit(); delay(400);
+    exit(); 
+    delay(400);
     //FIXME: display error to sketch, then exit
   }
 }
